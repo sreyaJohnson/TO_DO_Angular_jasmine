@@ -31,8 +31,7 @@ export class TodoListService {
 
    if(this.todoList.indexOf(item)===-1)
    this.todoList.push(item);
-
-    this.saveList();
+   this.saveList();
   }
 
   updateItem(item: TodoItem, changes: any): void {

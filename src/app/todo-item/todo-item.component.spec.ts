@@ -22,12 +22,12 @@ describe('TodoItemComponent', () => {
     expect(component).toBeTruthy();
   });
   it("should remove the items properly", () => {
-    const removeItemSpy=spyOn(component.remove, 'emit');
+    spyOn(component.remove, 'emit');
     const button = fixture.nativeElement.querySelector('button');
     fixture.nativeElement.querySelector("#itemName").value = 'Have lunch';
     const inputText = fixture.nativeElement.querySelector("#itemName").value;
     button.click();
     fixture.detectChanges();
-    expect(removeItemSpy).toHaveBeenCalledWith({title:inputText});
+    expect(component.remove.emit).toHaveBeenCalledWith({title:inputText});
   });
 });
