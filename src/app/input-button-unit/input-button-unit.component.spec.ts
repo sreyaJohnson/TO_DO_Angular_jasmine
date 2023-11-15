@@ -19,13 +19,23 @@ describe('InputButtonUnitComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should get the input value', () => {
+    spyOn(component,'getInputValue');
+    let inputEl = fixture.nativeElement.querySelector('input');
+    const eventEl = new KeyboardEvent("keyup",{
+      "key": "enter"
+  });
+    inputEl.dispatchEvent(eventEl);
+    fixture.detectChanges();
+    expect(component.getInputValue).toHaveBeenCalled();
+
+  });
   it('should submit input value', () => {
-    let btn =document.querySelector('button');
-    btn?.click();
     spyOn(component.submit,'emit').and.callThrough();
-    let event = new MouseEvent('click'); 
-  //  event.target="hey";
-   // const newTask = component.getInputValue(event);
+    let btn =fixture.nativeElement.querySelector('button');
+    const clickEvent = new Event('click');
+    btn.dispatchEvent(clickEvent);
+    fixture.detectChanges();
     expect(component.submit.emit).toHaveBeenCalled();
   });
 });
